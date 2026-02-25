@@ -6166,7 +6166,6 @@ dependencies = [
     { name = "pymilvus" },
     { name = "python-dotenv" },
     { name = "pyyaml" },
-    { name = "ragas" },
     { name = "rich" },
     { name = "tabulate" },
     { name = "urllib3" },
@@ -6201,6 +6200,9 @@ crewai = [
 ]
 data-flywheel = [
     { name = "nvidia-nat-data-flywheel" },
+]
+evaluation = [
+    { name = "ragas" },
 ]
 examples = [
     { name = "nat-adk-demo" },
@@ -6475,7 +6477,7 @@ requires-dist = [
     { name = "pymilvus", specifier = "~=2.6" },
     { name = "python-dotenv", specifier = ">=1.1.1,<2.0.0" },
     { name = "pyyaml", specifier = "~=6.0" },
-    { name = "ragas", specifier = ">=0.2.14,<1.0.0" },
+    { name = "ragas", marker = "extra == 'evaluation'", specifier = ">=0.2.14,<1.0.0" },
     { name = "rich", specifier = ">=14.0.0,<15.0.0" },
     { name = "sqlalchemy", extras = ["asyncio"], marker = "extra == 'async-endpoints'", specifier = "~=2.0" },
     { name = "tabulate", specifier = "~=0.9" },
@@ -6484,7 +6486,7 @@ requires-dist = [
     { name = "uvicorn", extras = ["standard"], specifier = "~=0.38" },
     { name = "wikipedia", specifier = "~=1.4" },
 ]
-provides-extras = ["all", "a2a", "adk", "agno", "autogen", "crewai", "data-flywheel", "huggingface", "ingestion", "langchain", "llama-index", "mcp", "mem0ai", "opentelemetry", "phoenix", "pii-defense", "profiling", "ragaai", "mysql", "redis", "s3", "semantic-kernel", "strands", "telemetry", "test", "vanna", "weave", "zep-cloud", "openpipe-art", "nemo-customizer", "examples", "gunicorn", "async-endpoints", "nvidia-haystack", "litellm", "openai"]
+provides-extras = ["all", "a2a", "adk", "agno", "autogen", "crewai", "data-flywheel", "evaluation", "huggingface", "ingestion", "langchain", "llama-index", "mcp", "mem0ai", "opentelemetry", "phoenix", "pii-defense", "profiling", "ragaai", "mysql", "redis", "s3", "semantic-kernel", "strands", "telemetry", "test", "vanna", "weave", "zep-cloud", "openpipe-art", "nemo-customizer", "examples", "gunicorn", "async-endpoints", "nvidia-haystack", "litellm", "openai"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -6688,14 +6690,18 @@ dependencies = [
     { name = "langchain-aws" },
     { name = "langchain-classic" },
     { name = "langchain-core" },
-    { name = "langchain-huggingface" },
     { name = "langchain-litellm" },
-    { name = "langchain-milvus" },
     { name = "langchain-nvidia-ai-endpoints" },
     { name = "langchain-openai" },
-    { name = "langchain-tavily" },
     { name = "langgraph" },
     { name = "nvidia-nat" },
+]
+
+[package.optional-dependencies]
+all = [
+    { name = "langchain-huggingface" },
+    { name = "langchain-milvus" },
+    { name = "langchain-tavily" },
 ]
 
 [package.metadata]
@@ -6704,15 +6710,16 @@ requires-dist = [
     { name = "langchain-aws", specifier = ">=1.1.0,<2.0.0" },
     { name = "langchain-classic", specifier = ">=1.0.1,<2.0.0" },
     { name = "langchain-core", specifier = ">=1.2.6,<2.0.0" },
-    { name = "langchain-huggingface", specifier = ">=1.2.0,<2.0.0" },
+    { name = "langchain-huggingface", marker = "extra == 'all'", specifier = ">=1.2.0,<2.0.0" },
     { name = "langchain-litellm", specifier = ">=0.3.5,<1.0.0" },
-    { name = "langchain-milvus", specifier = ">=0.3.3,<1.0.0" },
+    { name = "langchain-milvus", marker = "extra == 'all'", specifier = ">=0.3.3,<1.0.0" },
     { name = "langchain-nvidia-ai-endpoints", specifier = ">=1.0.2,<2.0.0" },
     { name = "langchain-openai", specifier = ">=1.1.6,<2.0.0" },
-    { name = "langchain-tavily", specifier = ">=0.2.16,<1.0.0" },
+    { name = "langchain-tavily", marker = "extra == 'all'", specifier = ">=0.2.16,<1.0.0" },
     { name = "langgraph", specifier = ">=1.0.5,<2.0.0" },
     { name = "nvidia-nat", editable = "." },
 ]
+provides-extras = ["all"]
 
 [[package]]
 name = "nvidia-nat-llama-index"
