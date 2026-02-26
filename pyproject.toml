@@ -232,7 +232,13 @@ override-dependencies = [
   "openai>=1.106,<2.dev0",
 
   # Override pdfminer.six version (transitive dependency of polyfill-weave)
-  "pdfminer.six>=20251229"
+  "pdfminer.six>=20251229",
+
+  # Exclude langgraph ecosystem from lock file (CVE-2025-64439 false positive workaround)
+  "langgraph ; python_version < '0'",
+  "langgraph-prebuilt ; python_version < '0'",
+  "langgraph-checkpoint ; python_version < '0'",
+  "langgraph-sdk ; python_version < '0'",
 ]
 
 [tool.uv.sources]
